@@ -1,0 +1,30 @@
+{
+  "name": "veda-check-language",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Function using a Bloom filter to check the language of the word. Recognizes russian and english.",
+  "keywords": [
+    "bloom language check russian english"
+  ],
+  "homepage": "https://github.com/semantic-machines/veda-check-language",
+  "author": {
+    "name": "Roman Karpov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/semantic-machines/veda-check-language.git"
+  },
+  "main": "index.min.js",
+  "type": "module",
+  "scripts": {
+    "install": "git clone https://github.com/dwyl/english-words.git node_modules/english-words && git clone https://github.com/danakt/russian-words.git node_modules/russian-words",
+    "prepare-words": "iconv -f WINDOWS-1251 -t UTF-8 node_modules/russian-words/russian.txt > node_modules/russian-words/russian-words.txt && cp node_modules/english-words/words_alpha.txt node_modules/english-words/english-words.txt",
+    "build": "npm run prepare-words && node build.js && esbuild index.js --minify --bundle --platform=neutral --outfile=index.min.js",
+    "test": "node test.js"
+  },
+  "devDependencies": {
+    "bloomfilter.js": "github:jasondavies/bloomfilter.js",
+    "esbuild": "^0.17.19",
+    "snowball-stemmer.jsx": "^0.2.3"
+  }
+}
