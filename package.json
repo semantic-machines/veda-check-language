@@ -19,7 +19,7 @@
   "scripts": {
     "install": "git clone https://github.com/dwyl/english-words.git node_modules/english-words && git clone https://github.com/danakt/russian-words.git node_modules/russian-words",
     "prepare-words": "iconv -f WINDOWS-1251 -t UTF-8 node_modules/russian-words/russian.txt > node_modules/russian-words/russian-words.txt && cp node_modules/english-words/words_alpha.txt node_modules/english-words/english-words.txt",
-    "build": "npm run prepare-words && node build.js && esbuild index.js --minify --bundle --platform=neutral --outfile=index.min.js",
+    "build": "npm run prepare-words && node build.js && esbuild index.js --minify --bundle --outfile=index.min.js",
     "test": "node test.js"
   },
   "devDependencies": {
